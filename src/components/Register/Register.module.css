@@ -1,0 +1,19 @@
+.Register{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.RegisterForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid lightskyblue;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+}
