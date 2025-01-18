@@ -53,6 +53,11 @@ export function Register(): JSX.Element {
         }
     }
 
+    function onRegister(){
+        alert('registered');
+        console.log(user);
+    }
+
     return (
         <div className={css.Register}>
             <h1>Register:</h1>
@@ -84,6 +89,7 @@ export function Register(): JSX.Element {
                 />
                 <TextField
                     error={objError.passwordError}
+                    type="password"
                     id="outlined-basic"
                     label="password"
                     variant="outlined"
@@ -91,7 +97,7 @@ export function Register(): JSX.Element {
                     onChange={onFormChange}
                 />
 
-                <Button disabled={disable} variant="contained">
+                <Button onClick={onRegister} disabled={disable} variant="contained">
                     Register
                 </Button>
             </div>
