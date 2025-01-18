@@ -7,6 +7,12 @@ export function Register(): JSX.Element {
 
     const [user, setUser] = useState<UserModel>(new UserModel());
     const [disable, setDisable] = useState<boolean>(true);
+    const [objError ,setObjError] = useState({
+        firstNameError:false,
+        lastNameError:false,
+        emailError:false,
+        passwordError:false
+    }); 
 
     function onFormChange(event: any) {
         if (event.target.name === "firstName") {
@@ -22,7 +28,20 @@ export function Register(): JSX.Element {
             user.password = event.target.value;
         }
         setUser({ ...user });
+        checkError();
         finish();
+    }
+
+    function checkError(){
+        if(user?.firstName?.length < 2) objError.firstNameError = true; 
+        else objError.firstNameError = false;
+        if(user?.lastName?.length < 2) objError.lastNameError = true; 
+        else objError.lastNameError = false;
+        if(user?.email?.length < 10) objError.emailError = true; 
+        else objError.emailError = false;
+        if(user?.password?.length < 6) objError.passwordError = true; 
+        else objError.passwordError = false;
+        setObjError({...objError})
     }
     
     function finish(){
@@ -40,6 +59,7 @@ export function Register(): JSX.Element {
             <div className={css.RegisterForm}>
 
                 <TextField
+                    error={objError.firstNameError}
                     id="outlined-basic"
                     label="firstName"
                     variant="outlined"
@@ -47,6 +67,7 @@ export function Register(): JSX.Element {
                     onChange={onFormChange}
                 />
                 <TextField
+                    error={objError.lastNameError}
                     id="outlined-basic"
                     label="lastName"
                     variant="outlined"
@@ -54,6 +75,7 @@ export function Register(): JSX.Element {
                     onChange={onFormChange}
                 />
                 <TextField
+                    error={objError.emailError}
                     id="outlined-basic"
                     label="email"
                     variant="outlined"
@@ -61,6 +83,7 @@ export function Register(): JSX.Element {
                     onChange={onFormChange}
                 />
                 <TextField
+                    error={objError.passwordError}
                     id="outlined-basic"
                     label="password"
                     variant="outlined"
