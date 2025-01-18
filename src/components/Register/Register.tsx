@@ -10,27 +10,27 @@ export function Register(): JSX.Element {
 
     function onFormChange(event: any) {
         if (event.target.name === "firstName") {
-            user.firstName === event.target.value;
+            user.firstName = event.target.value;
         }
         if (event.target.name === "lastName") {
-            user.lastName === event.target.value;
+            user.lastName = event.target.value;
         }
         if (event.target.name === "email") {
-            user.email === event.target.value;
+            user.email = event.target.value;
         }
         if (event.target.name === "password") {
-            user.password === event.target.value;
+            user.password = event.target.value;
         }
         setUser({ ...user });
         finish();
     }
     
     function finish(){
-        if(user?.email?.length > 0 && user?.firstName?.length > 0 && user?.lastName?.length > 0 && user?.password?.length > 0){
+        if(user?.email?.length > 10 && user?.password?.length >= 6 && user?.firstName?.length>= 2 && user?.lastName?.length > 2){
             setDisable(false);
         }
         else{
-            setDisable(true);     
+            setDisable(true);
         }
     }
 
@@ -38,8 +38,8 @@ export function Register(): JSX.Element {
         <div className={css.Register}>
             <h1>Register:</h1>
             <div className={css.RegisterForm}>
+
                 <TextField
-                    
                     id="outlined-basic"
                     label="firstName"
                     variant="outlined"
